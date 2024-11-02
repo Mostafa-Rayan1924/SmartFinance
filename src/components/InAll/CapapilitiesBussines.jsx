@@ -1,8 +1,9 @@
 import { marqueeBalance } from "@/constants/MarqueeBalance";
-import MainTitle from "../InAll/MainTitle";
+import MainTitle from "./MainTitle";
 import { Circle, Square } from "lucide-react";
+import CapapilitiesCard from "./CapapilitiesCard";
 
-const CapapilitiesBussines = () => {
+const CapapilitiesBussines = ({ ArrayToMap }) => {
   return (
     <section className="relative">
       <div className="absolute right-20 sm:-right-20 w-[150px] h-[150px]     opacity-50 blur-3xl  rounded-full bg-gradient-to-r from-primary to-transparent -z-20 -bottom-[120px] " />
@@ -18,15 +19,8 @@ const CapapilitiesBussines = () => {
       />
 
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-6">
-        {marqueeBalance.map((item) => {
-          return (
-            <div
-              className="text-center flex flex-col border rounded-lg p-6 hover:border-primary transition-all duration-300 gap-2 items-center"
-              key={item.id}>
-              <h3 className="text-primary">{item.icon}</h3>
-              <h2 className="text-sm">{item.title}</h2>
-            </div>
-          );
+        {ArrayToMap.map((item) => {
+          return <CapapilitiesCard key={item.id} item={item} />;
         })}
       </div>
     </section>

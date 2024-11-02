@@ -8,11 +8,11 @@ const Footer = () => {
     <footer className="relative">
       <div className=" container pb-8 pt-16  lg:pt-24">
         <div className="text-center space-y-3">
-          <h2 className="text-3xl font-extrabold sm:text-5xl">
+          <h2 className=" text-2xl font-extrabold sm:text-5xl">
             Customise Your Project
           </h2>
           <p className="mx-auto  max-w-sm text-muted-foreground  capitalize">
-            start with a free trial, no credit card required
+            start with a free trial,no credit card required
           </p>
 
           <Button
@@ -22,7 +22,7 @@ const Footer = () => {
           </Button>
         </div>
 
-        <div className="mt-16 border-t pt-8 sm:flex sm:items-center sm:justify-between lg:mt-24">
+        <div className="mt-16 border-t pb-16 sm:pb-0 pt-8 flex flex-col-reverse sm:flex-row sm:items-center  sm:justify-between lg:mt-24">
           <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
             <li>
               <a
@@ -49,7 +49,7 @@ const Footer = () => {
             </li>
           </ul>
 
-          <Link href={"/"}>
+          <Link className="flex mb-4 sm:mb-0 justify-center" href={"/"}>
             <Image
               className="rounded-lg"
               src={"/logo.jpg"}

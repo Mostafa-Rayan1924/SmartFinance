@@ -7,7 +7,7 @@ const MobileNav = () => {
         <nav className="flex items-center gap-4 justify-evenly ">
           {navLinks.map((link) => (
             <Link
-              href={`/${link.href}`}
+              href={`${link.url}`}
               key={link.id}
               className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 ">
               <div className="flex  items-center flex-col gap-y-[2px]">

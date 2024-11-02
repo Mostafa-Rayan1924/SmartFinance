@@ -11,13 +11,13 @@ export let navLinks = [
   {
     id: 2,
     title: "income statement",
-    url: "/income-statement",
+    url: "/IncomeStatement",
     icon: <DiamondPlusIcon className="size-4" />,
   },
   {
     id: 3,
     title: "cash flow",
-    url: "/cash-flow",
+    url: "/cashFlow",
     icon: <CircleDollarSign className="size-4" />,
   },
 ];

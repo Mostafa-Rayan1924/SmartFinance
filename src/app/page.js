@@ -1,9 +1,11 @@
-import CapapilitiesBussines from "@/components/BalancePage/CapapilitiesBussines";
+import CapapilitiesBussines from "@/components/InAll/CapapilitiesBussines";
 import Equation from "@/components/BalancePage/Equation";
 import ProjectBalance from "@/components/BalancePage/ProjectBalance";
 import Structure from "@/components/BalancePage/Structure";
-import SwitchBalance from "@/components/BalancePage/SwitchBalance";
+import SwitchBalance from "@/components/InAll/SwitchSection";
 import HeroTempelates from "@/components/InAll/HeroTempelates";
+import { marqueeBalance } from "@/constants/MarqueeBalance";
+import SwitchSection from "@/components/InAll/SwitchSection";
 
 export default function Home() {
   return (
@@ -18,8 +20,8 @@ export default function Home() {
       {/* <ProjectBalance /> */}
       <Equation />
       <Structure />
-      <CapapilitiesBussines />
-      <SwitchBalance />
+      <CapapilitiesBussines ArrayToMap={marqueeBalance} />
+      <SwitchSection imgUrl={"/finance.jpg"} />
     </main>
   );
 }

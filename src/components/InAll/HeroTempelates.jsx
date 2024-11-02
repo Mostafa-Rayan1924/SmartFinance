@@ -1,5 +1,5 @@
-import { Circle, Square } from "lucide-react";
-
+import CircleIcon from "./CircleIcon";
+import SquareIcon from "./SquareIcon";
 const HeroTempelates = ({ title, span, desc }) => {
   return (
     <section className="relative flex flex-col items-center   sm:mt-[-70px] h-[50vh] sm:h-[70vh]     justify-center  ">
@@ -12,10 +12,10 @@ const HeroTempelates = ({ title, span, desc }) => {
         <p className="text-muted-foreground sm:text-lg sm:max-w-[900px]">
           {desc}
         </p>
-        <Square className="size-10 absolute -top-20 left-0 -z-20 text-pink-500 opacity-85 rotate-6 " />
-        <Square className="size-10 text-primary absolute right-0 -bottom-10 -z-10  opacity-85 rotate-6 " />
-        <Circle className="absolute size-10  flex text-pink-500  -top-10 right-0   -z-10  opacity-85 rotate-6 " />
-        <Circle className="size-10 flex text-primary absolute -bottom-10 left-0  -z-10  opacity-85 rotate-6  " />
+        <SquareIcon y={"-top-20"} x={"left-0"} color={"pink-500"} />
+        <SquareIcon y={"-bottom-10"} x={"right-0"} color={"primary"} />
+        <CircleIcon color={"primary"} x={"left-10"} y={"-bottom-10"} />
+        <CircleIcon color={"pink-500"} x={"right-0"} y={"-top-10"} />
       </div>
     </section>
   );

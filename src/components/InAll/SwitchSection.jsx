@@ -1,9 +1,9 @@
 import Image from "next/image";
-import MainTitle from "../InAll/MainTitle";
+import MainTitle from "./MainTitle";
 import { Button } from "../ui/button";
 import { Square } from "lucide-react";
 
-const SwitchBalance = () => {
+const SwitchSection = ({ imgUrl }) => {
   return (
     <section className="relative">
       <Square className="size-10 absolute top-10 right-0 -z-20 text-pink-500 opacity-85 rotate-6 " />
@@ -16,11 +16,11 @@ const SwitchBalance = () => {
           className="sm:h-[600px] w-full rounded-lg object-cover "
           height={500}
           alt="finance"
-          src={"/finance.jpg"}
+          src={imgUrl}
         />
       </div>
     </section>
   );
 };
 
-export default SwitchBalance;
+export default SwitchSection;
