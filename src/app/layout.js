@@ -1,10 +1,12 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { Work_Sans } from "@next/font/google";
+import { Work_Sans } from "next/font/google"; // تأكد من مسار الاستيراد
 import "./globals.css";
 import Navbar from "@/components/Navigation/Navbar";
 import MobileNav from "@/components/Navigation/MobileNav";
 import Footer from "@/components/InAll/Footer";
-const WorkSans = Work_Sans({ subsets: ["latin"], weight: ["400", "700"] });
+
+// استدعاء الخط بالطريقة الصحيحة في Next.js 15
+const workSans = Work_Sans({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata = {
   title: "Smart Finance",
@@ -20,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html className="overflow-x-hidden scroll-smooth" lang="en">
-      <body className={` overflow-x-hidden ${WorkSans.className}`}>
+      <body className={`overflow-x-hidden ${workSans.className}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
