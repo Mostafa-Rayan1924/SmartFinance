@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="relative">
+    <footer className="relative noprint">
       <div className=" container pb-8 pt-16  lg:pt-24">
         <div className="text-center space-y-3">
           <h2 className=" text-2xl font-extrabold sm:text-5xl">

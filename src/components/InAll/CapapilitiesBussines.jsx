@@ -5,7 +5,7 @@ import CapapilitiesCard from "./CapapilitiesCard";
 
 const CapapilitiesBussines = ({ ArrayToMap }) => {
   return (
-    <section className="relative">
+    <section className="relative noprint">
       <div className="absolute right-20 sm:-right-20 w-[150px] h-[150px]     opacity-50 blur-3xl  rounded-full bg-gradient-to-r from-primary to-transparent -z-20 -bottom-[120px] " />
       <Square className="size-10 absolute -top-20 left-0 -z-20 text-pink-500 opacity-85 rotate-6 " />
       <Square className="size-10 text-primary absolute right-0 -bottom-10 -z-10  opacity-85 rotate-6 " />

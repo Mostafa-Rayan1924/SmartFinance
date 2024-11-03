@@ -17,7 +17,7 @@ export default function Home() {
           "In financial accounting, a balance sheet serves as a reference document for investors and other stakeholders to get an idea of the financial health of a business. It enables them to compare current assets and liabilities to determine the business’ liquidity, or calculate the rate at which the company generates returns."
         }
       />
-      {/* <ProjectBalance /> */}
+      <ProjectBalance />
       <Equation />
       <Structure />
       <CapapilitiesBussines ArrayToMap={marqueeBalance} />

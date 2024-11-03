@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Structure = () => {
   return (
-    <section>
+    <section className="noprint">
       <MainTitle
         title={"Structure of a balance sheet"}
         desc={

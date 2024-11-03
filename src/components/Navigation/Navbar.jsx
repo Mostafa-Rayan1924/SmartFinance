@@ -10,7 +10,7 @@ const Navbar = () => {
   const pathname = usePathname();
   console.log(pathname);
   return (
-    <header className="fixed  top-0 left-0 h-fit z-50 w-full bg-background/50 backdrop-blur-md py-4">
+    <header className="fixed  top-0 left-0 h-fit z-50 w-full bg-background/50 backdrop-blur-md py-4 noprint">
       <div className="container flex items-center justify-between flex-wrap">
         <Image
           className="rounded-lg"

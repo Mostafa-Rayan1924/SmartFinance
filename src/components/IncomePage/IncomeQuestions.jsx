@@ -11,7 +11,7 @@ import CircleIcon from "../InAll/CircleIcon";
 
 const IncomeQuestions = () => {
   return (
-    <section className="relative">
+    <section className="relative noprint">
       <SquareIcon color={"primary"} y={"-top-10"} x={"right-0"} />
       <CircleIcon color={"pink-500"} y={"-bottom-10"} x={"right-0"} />
       <div className="absolute left-20 sm:-left-20 w-[150px] h-[150px] sm:w-[220px] sm:h-[220px]    opacity-50 blur-3xl  rounded-full bg-gradient-to-r from-primary to-transparent -z-20 -bottom-20 " />

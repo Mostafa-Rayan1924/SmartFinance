@@ -5,7 +5,7 @@ import { Square } from "lucide-react";
 
 const SwitchSection = ({ imgUrl }) => {
   return (
-    <section className="relative">
+    <section className="relative noprint">
       <Square className="size-10 absolute top-10 right-0 -z-20 text-pink-500 opacity-85 rotate-6 " />
       <div className="absolute left-0 w-[150px] h-[150px]     opacity-50 blur-3xl  rounded-full bg-gradient-to-r from-primary to-transparent -z-20 -bottom-[120px] " />
       <div className="text-center ">

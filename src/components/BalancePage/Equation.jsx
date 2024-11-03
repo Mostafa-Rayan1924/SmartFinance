@@ -3,7 +3,7 @@ import MainTitle from "../InAll/MainTitle";
 
 const Equation = () => {
   return (
-    <section className="border relative rounded-lg p-6 max-w-[720px] mx-auto">
+    <section className="border noprint relative rounded-lg p-6 max-w-[720px] mx-auto">
       <Square className="size-10 text-muted-foreground absolute right-0 md:-right-4 -top-6 -z-10  opacity-85 rotate-6 " />
       <MainTitle
         title={"The balance sheet equation"}
