@@ -64,7 +64,7 @@ const ProjectBalance = () => {
   };
 
   return (
-    <div className="content p-6 border rounded-lg print">
+    <section className="p-6 border rounded-lg print">
       <div className="flex flex-col items-center gap-3">
         <input
           value={organizationName}
@@ -95,7 +95,7 @@ const ProjectBalance = () => {
                   key={item.label}>
                   <span>{item.label}:</span>
                   <input
-                    className="outline-none border px-2 py-2 rounded-lg"
+                    className="outline-none bg-accent w-[140px] sm:w-auto border px-2 py-2 rounded-lg"
                     type="number"
                     min="0" // تعيين الحد الأدنى للقيمة
                     value={item.value}
@@ -134,7 +134,7 @@ const ProjectBalance = () => {
                   key={item.label}>
                   <span>{item.label}:</span>
                   <input
-                    className="outline-none border px-2 py-2 rounded-lg"
+                    className="outline-none bg-accent w-[140px] sm:w-auto border px-2 py-2 rounded-lg"
                     type="number"
                     min="0" // تعيين الحد الأدنى للقيمة
                     value={item.value}
@@ -155,7 +155,7 @@ const ProjectBalance = () => {
             </h5>
           </div>
         ))}
-        <h4 className="font-semibold my-5 flex items-center justify-between text-primary">
+        <h4 className="font-semibold my-5 flex items-center justify-evenly text-2xl text-green-500">
           Total liabilites and equity: <span>{calculateTotal2()}$</span>
         </h4>
       </div>
@@ -168,7 +168,7 @@ const ProjectBalance = () => {
           Print Report
         </Button>
       </div>
-    </div>
+    </section>
   );
 };
 

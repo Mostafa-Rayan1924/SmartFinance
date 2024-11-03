@@ -1,3 +1,4 @@
+import ProjectTemp from "@/components/cashflow/ProjectTemp";
 import CapapilitiesBussines from "@/components/InAll/CapapilitiesBussines";
 import HeroTempelates from "@/components/InAll/HeroTempelates";
 import SwitchSection from "@/components/InAll/SwitchSection";
@@ -13,6 +14,7 @@ const CashFlow = () => {
           "Cash flow refers to the movement of money into and out of a business over a specific period. It is a crucial indicator of a company's financial health, as it shows how well the company generates cash to meet its obligations, such as paying bills and investing in growth. Positive cash flow indicates that a company has sufficient liquidity to support its operations."
         }
       />
+      <ProjectTemp />
       <CapapilitiesBussines ArrayToMap={cashFlowFeatures} />
       <SwitchSection imgUrl={"/financeCash.svg"} />
     </main>

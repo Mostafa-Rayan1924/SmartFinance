@@ -2,6 +2,7 @@ import CapapilitiesBussines from "@/components/InAll/CapapilitiesBussines";
 import HeroTempelates from "@/components/InAll/HeroTempelates";
 import SwitchSection from "@/components/InAll/SwitchSection";
 import IncomeQuestions from "@/components/IncomePage/IncomeQuestions";
+import IncomeTemp from "@/components/IncomePage/IncomeTemp";
 import { incomeStatementFeatures } from "@/constants/MarqueeIncome";
 
 const IncomePage = () => {
@@ -14,6 +15,7 @@ const IncomePage = () => {
           "Revenue reflects the total income generated from sales and other sources Cost of Goods Sold represents direct production costs like materials and labor Gross Profit is calculated by subtracting COGS from Revenue Operating Expenses include costs for running the business, such as rent, salaries, and utilities Net Income is the remaining profit after deducting Operating Expenses and taxes"
         }
       />
+      <IncomeTemp />
       <IncomeQuestions />
       <CapapilitiesBussines ArrayToMap={incomeStatementFeatures} />
       <SwitchSection imgUrl={"/financeIncome.jpg"} />
