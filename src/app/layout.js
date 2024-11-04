@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navigation/Navbar";
 import MobileNav from "@/components/Navigation/MobileNav";
 import Footer from "@/components/InAll/Footer";
+import { Toaster } from "react-hot-toast";
+import UserContext from "@/components/context/UserContext";
 
 // استدعاء الخط بالطريقة الصحيحة في Next.js 15
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["400", "700"] });
@@ -28,10 +30,13 @@ export default function RootLayout({ children }) {
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange>
-          <Navbar />
-          <MobileNav />
-          {children}
-          <Footer />
+          <UserContext>
+            <Navbar />
+            <MobileNav />
+            {children}
+            <Footer />
+            <Toaster position="bottom-right" reverseOrder={true} />
+          </UserContext>
         </ThemeProvider>
       </body>
     </html>

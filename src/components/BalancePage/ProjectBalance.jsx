@@ -1,9 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { use, useContext, useState } from "react";
 import { initialData1, initialData2 } from "@/constants/BalanceSheetData";
 import { Button, buttonVariants } from "../ui/button";
+import { UserContextFromRegisteration } from "../context/UserContext";
+import { useRouter } from "next/navigation";
 
 const ProjectBalance = () => {
+  let { user, setUser } = useContext(UserContextFromRegisteration);
+  let router = useRouter();
   const [data, setData] = useState(initialData1);
   const [data2, setData2] = useState(initialData2);
 
@@ -49,6 +53,7 @@ const ProjectBalance = () => {
     const totalAssets = calculateTotal();
     const totalLiabilities = calculateTotal2();
     if (
+      user.token &&
       totalAssets !== 0 &&
       totalLiabilities !== 0 &&
       totalAssets === totalLiabilities &&
@@ -56,6 +61,8 @@ const ProjectBalance = () => {
       organizationAddress
     ) {
       print();
+    } else if (!user.token) {
+      router.push("/login");
     } else {
       alert(
         "The totals must not equal zero, and the organization name and address fields must be filled in."
@@ -115,7 +122,7 @@ const ProjectBalance = () => {
             </h5>
           </div>
         ))}
-        <h4 className="font-semibold my-2 flex items-center justify-between text-primary">
+        <h4 className="font-semibold my-2 flex items-center justify-evenly text-2xl text-green-500">
           Total Assets: <span>{calculateTotal()}$</span>
         </h4>
       </div>

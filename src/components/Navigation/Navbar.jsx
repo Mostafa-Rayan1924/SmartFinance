@@ -1,24 +1,30 @@
 "use client";
 import { navLinks } from "@/constants/navlinks";
 import Image from "next/image";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { ModeToggle } from "./ModeToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { UserContextFromRegisteration } from "../context/UserContext";
+import { useContext } from "react";
+import Profile from "./Profile";
 
 const Navbar = () => {
+  let { user, setUser } = useContext(UserContextFromRegisteration);
   const pathname = usePathname();
-  console.log(pathname);
+
   return (
     <header className="fixed  top-0 left-0 h-fit z-50 w-full bg-background/50 backdrop-blur-md py-4 noprint">
       <div className="container flex items-center justify-between flex-wrap">
-        <Image
-          className="rounded-lg"
-          src={"/logo.jpg"}
-          alt="Logo"
-          width={60}
-          height={40}
-        />
+        <Link href={"/"}>
+          <Image
+            className="rounded-lg"
+            src={"/logo.jpg"}
+            alt="Logo"
+            width={60}
+            height={40}
+          />
+        </Link>
         {/* links on large screen */}
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
@@ -35,11 +41,21 @@ const Navbar = () => {
           ))}
         </nav>
         {/* mode */}
-        <div className="flex items-center gap-2">
-          <Button className="text-white hidden md:flex">
-            sign up for free trial
-          </Button>
-          <Button className="text-white flex md:hidden">sign up</Button>
+        <div className="flex relative items-center gap-2">
+          {user.token ? (
+            <div className="flex   items-center gap-2">
+              <Profile />
+            </div>
+          ) : (
+            <>
+              <Link href={"/signup"}>
+                <Button className="text-white hidden md:flex">
+                  sign up for free trial
+                </Button>
+              </Link>
+              <Button className="text-white flex md:hidden">sign up</Button>
+            </>
+          )}
           <ModeToggle />
         </div>
       </div>
