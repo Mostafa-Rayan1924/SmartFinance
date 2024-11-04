@@ -12,7 +12,7 @@ const MobileNav = () => {
               className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 ">
               <div className="flex  items-center flex-col gap-y-[2px]">
                 <span>{link.icon}</span>
-                <span className="capitalize text-[12px] whitespace-nowrap">
+                <span className="capitalize text-[10px] whitespace-nowrap">
                   {link.title}
                 </span>
               </div>

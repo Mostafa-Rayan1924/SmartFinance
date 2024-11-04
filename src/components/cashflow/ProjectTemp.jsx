@@ -3,11 +3,13 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
 import { UserContextFromRegisteration } from "../context/UserContext";
 import { useRouter } from "next/navigation";
+import { numSheet } from "../context/NumOfSheet";
+import axios from "axios";
 
 const ProjectTemp = () => {
   let { user, setUser } = useContext(UserContextFromRegisteration);
+  let { numOfSheet, setNum } = useContext(numSheet);
   let router = useRouter();
-
   let [organizationName, setOrganizationName] = useState("");
   let [organizationAddress, setOrganizationAddress] = useState("");
   // state for operation1
@@ -47,11 +49,37 @@ const ProjectTemp = () => {
     );
   }, [FinancingCashFlows]);
   // for printing
-  const handlePrint = () => {
-    if (user?.token && organizationName && organizationAddress) {
-      print();
+  const handlePrint = async () => {
+    const headers = {
+      Authorization: `Bearer ${user?.token}`,
+    };
+    if (
+      user?.token &&
+      numOfSheet.sheet < 3 &&
+      organizationName &&
+      organizationAddress
+    ) {
+      const confirmPrint = window.confirm("Do you want to print this report?");
+      if (confirmPrint) {
+        window.print();
+        try {
+          const res = await axios.post(
+            "https://smart-finance-five.vercel.app/finance/api/balance/createsheet",
+            {},
+            {
+              headers: headers,
+            }
+          );
+          console.log(res.data);
+          setNum(Math.random());
+        } catch (error) {
+          console.error("Error creating sheet:", error);
+        }
+      }
     } else if (!user?.token) {
       router.push("/login");
+    } else if (user && user?.user?.paid === false && numOfSheet.sheet === 3) {
+      router.push("/payment");
     } else {
       alert(
         "Fill in the organization name and address fields before printing."

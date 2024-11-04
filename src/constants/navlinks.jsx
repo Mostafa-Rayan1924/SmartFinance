@@ -16,7 +16,7 @@ export let navLinks = [
   },
   {
     id: 3,
-    title: "cash flow",
+    title: "Cash Flow Statement",
     url: "/cashFlow",
     icon: <CircleDollarSign className="size-4" />,
   },

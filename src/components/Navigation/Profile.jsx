@@ -9,8 +9,28 @@ import { numSheet } from "../context/NumOfSheet";
 
 const Profile = () => {
   let [open, setOpen] = useState(false);
-  let { setUser } = useContext(UserContextFromRegisteration);
-  let { numOfSheet } = useContext(numSheet);
+
+  let { user, setUser } = useContext(UserContextFromRegisteration);
+  let { numOfSheet, setNumOfSheet, num } = useContext(numSheet);
+  let getUser = async () => {
+    try {
+      let res = await axios.get(
+        `https://smart-finance-five.vercel.app/finance/api/user/getone/${user?.user?._id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      setNumOfSheet(res.data.data.result);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (user?.user?._id && user?.token) {
+      getUser();
+    }
+  }, [user?.user, num]);
 
   let handleLogout = (e) => {
     e.preventDefault();
