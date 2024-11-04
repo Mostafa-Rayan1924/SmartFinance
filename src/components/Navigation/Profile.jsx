@@ -1,13 +1,17 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContextFromRegisteration } from "../context/UserContext";
 import { DollarSign, MailCheck, Sheet, UserRound } from "lucide-react";
 import Image from "next/image";
+import axios from "axios";
+import { numSheet } from "../context/NumOfSheet";
 
 const Profile = () => {
   let [open, setOpen] = useState(false);
-  let { user, setUser } = useContext(UserContextFromRegisteration);
+  let { setUser } = useContext(UserContextFromRegisteration);
+  let { numOfSheet } = useContext(numSheet);
+
   let handleLogout = (e) => {
     e.preventDefault();
     let confirm = window.confirm("Are you sure you want to logout?");
@@ -29,7 +33,7 @@ const Profile = () => {
           src="/icon.webp"
           width={40}
           height={40}
-          alt={user.user.name}
+          alt={numOfSheet.name}
           className="size-10 object-cover"
         />
       </button>
@@ -41,25 +45,25 @@ const Profile = () => {
         role="menu">
         <div className="p-2">
           <div
-            className=" flex items-center gap-2 rounded-lg px-4 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-primary"
+            className=" flex items-center whitespace-nowrap gap-2 rounded-lg px-4 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-primary"
             role="menuitem">
             <UserRound size={20} />
-            {user.user.name}
+            {numOfSheet.name}
           </div>
 
           <div
             className=" flex items-center gap-2 rounded-lg px-4 py-2 text-sm text-muted-foreground whitespace-normal hover:bg-accent hover:text-primary"
             role="menuitem">
             <MailCheck size={20} />
-            {user.user.email}
+            {numOfSheet.email}
           </div>
 
-          {user.user.paid ? (
+          {numOfSheet.paid ? (
             <div
-              className=" flex items-center gap-2 rounded-lg px-4 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-primary"
+              className=" flex items-center whitespace-nowrap gap-2 rounded-lg px-4 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-primary"
               role="menuitem">
               <DollarSign size={20} />
-              Available Sheet:{" "}
+              Available Sheet:
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -76,10 +80,10 @@ const Profile = () => {
             </div>
           ) : (
             <div
-              className=" flex items-center gap-2 rounded-lg px-4 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-primary"
+              className=" flex items-center whitespace-nowrap gap-2 rounded-lg px-4 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-primary"
               role="menuitem">
               <Sheet size={20} />
-              Free Sheet: {user.user.sheet}/3
+              <h3>Free Sheet: {numOfSheet.sheet}/3</h3>
             </div>
           )}
         </div>

@@ -1,8 +1,13 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
+import { UserContextFromRegisteration } from "../context/UserContext";
+import { useRouter } from "next/navigation";
 
 const ProjectTemp = () => {
+  let { user, setUser } = useContext(UserContextFromRegisteration);
+  let router = useRouter();
+
   let [organizationName, setOrganizationName] = useState("");
   let [organizationAddress, setOrganizationAddress] = useState("");
   // state for operation1
@@ -43,8 +48,10 @@ const ProjectTemp = () => {
   }, [FinancingCashFlows]);
   // for printing
   const handlePrint = () => {
-    if (organizationName && organizationAddress) {
+    if (user?.token && organizationName && organizationAddress) {
       print();
+    } else if (!user?.token) {
+      router.push("/login");
     } else {
       alert(
         "Fill in the organization name and address fields before printing."

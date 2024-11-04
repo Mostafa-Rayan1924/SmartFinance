@@ -35,8 +35,8 @@ const Signup = () => {
           "https://smart-finance-five.vercel.app/finance/api/auth/signup",
           params
         );
-        let token = res.data.token;
-        let user = res.data.data.result;
+        let token = res?.data?.token;
+        let user = res?.data?.data.result;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         setUser({ token, user });
@@ -53,6 +53,7 @@ const Signup = () => {
       }
     },
   });
+
   return (
     <section>
       <div className="lg:grid pt-[120px] lg:min-h-screen lg:grid-cols-12">

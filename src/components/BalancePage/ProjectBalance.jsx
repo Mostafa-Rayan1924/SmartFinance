@@ -1,12 +1,36 @@
 "use client";
-import React, { use, useContext, useState } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import { initialData1, initialData2 } from "@/constants/BalanceSheetData";
 import { Button, buttonVariants } from "../ui/button";
 import { UserContextFromRegisteration } from "../context/UserContext";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { numSheet } from "../context/NumOfSheet";
 
 const ProjectBalance = () => {
   let { user, setUser } = useContext(UserContextFromRegisteration);
+  let [num, setNum] = useState(0);
+  let { numOfSheet, setNumOfSheet } = useContext(numSheet);
+  let getUser = async () => {
+    try {
+      let res = await axios.get(
+        `https://smart-finance-five.vercel.app/finance/api/user/getone/${user?.user?._id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      setNumOfSheet(res.data.data.result);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (user?.user?._id && user?.token) {
+      getUser();
+    }
+  }, [user?.user, num]);
+
   let router = useRouter();
   const [data, setData] = useState(initialData1);
   const [data2, setData2] = useState(initialData2);
@@ -48,21 +72,42 @@ const ProjectBalance = () => {
     }, 0);
   };
 
-  // دالة للتحقق من المجموعات وفتح نافذة الطباعة
-  const handlePrint = () => {
+  const handlePrint = async () => {
     const totalAssets = calculateTotal();
     const totalLiabilities = calculateTotal2();
+    const headers = {
+      Authorization: `Bearer ${user?.token}`,
+    };
+
     if (
-      user.token &&
+      user?.token &&
+      numOfSheet.sheet < 3 &&
       totalAssets !== 0 &&
       totalLiabilities !== 0 &&
       totalAssets === totalLiabilities &&
       organizationName &&
       organizationAddress
     ) {
-      print();
-    } else if (!user.token) {
+      const confirmPrint = window.confirm("Do you want to print this report?");
+      if (confirmPrint) {
+        window.print();
+        try {
+          const res = await axios.post(
+            "https://smart-finance-five.vercel.app/finance/api/balance/createsheet",
+            {},
+            {
+              headers: headers,
+            }
+          );
+          setNum(Math.random());
+        } catch (error) {
+          console.error("Error creating sheet:", error);
+        }
+      }
+    } else if (!user?.token) {
       router.push("/login");
+    } else if (user && user?.user?.paid === false && numOfSheet.sheet === 3) {
+      router.push("/payment");
     } else {
       alert(
         "The totals must not equal zero, and the organization name and address fields must be filled in."

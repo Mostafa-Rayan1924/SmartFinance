@@ -1,16 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
+import { UserContextFromRegisteration } from "../context/UserContext";
+import { useRouter } from "next/navigation";
 
 const IncomeTemp = () => {
+  let { user, setUser } = useContext(UserContextFromRegisteration);
+  let router = useRouter();
+
   let [organizationName, setOrganizationName] = useState("");
   let [organizationAddress, setOrganizationAddress] = useState("");
   let [getProfit, setGetProfit] = useState(0);
   let [getEBIT, setGetEBIT] = useState(0);
   let [getEarningbefTax, setGetEarningbefTax] = useState(0);
   let [getNetIncome, setGetNetIncome] = useState(0);
-
   let [data, setData] = useState({
     revenue: 0,
     Purchases: 0,
@@ -45,8 +49,10 @@ const IncomeTemp = () => {
     getNetIncomeFunc();
   }, [getEarningbefTax, data.Tax]);
   const handlePrint = () => {
-    if (organizationName && organizationAddress) {
+    if (user.token && organizationName && organizationAddress) {
       print();
+    } else if (!user.token) {
+      router.push("/login");
     } else {
       alert(
         "Fill in the organization name and address fields before printing."

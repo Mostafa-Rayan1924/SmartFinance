@@ -6,6 +6,7 @@ import MobileNav from "@/components/Navigation/MobileNav";
 import Footer from "@/components/InAll/Footer";
 import { Toaster } from "react-hot-toast";
 import UserContext from "@/components/context/UserContext";
+import NumOfSheet from "@/components/context/NumOfSheet";
 
 // استدعاء الخط بالطريقة الصحيحة في Next.js 15
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["400", "700"] });
@@ -31,11 +32,13 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange>
           <UserContext>
-            <Navbar />
-            <MobileNav />
-            {children}
-            <Footer />
-            <Toaster position="bottom-right" reverseOrder={true} />
+            <NumOfSheet>
+              <Navbar />
+              <MobileNav />
+              {children}
+              <Footer />
+              <Toaster position="bottom-right" reverseOrder={true} />
+            </NumOfSheet>
           </UserContext>
         </ThemeProvider>
       </body>

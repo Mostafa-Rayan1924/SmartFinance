@@ -11,6 +11,7 @@ import Profile from "./Profile";
 
 const Navbar = () => {
   let { user, setUser } = useContext(UserContextFromRegisteration);
+
   const pathname = usePathname();
 
   return (
@@ -42,7 +43,7 @@ const Navbar = () => {
         </nav>
         {/* mode */}
         <div className="flex relative items-center gap-2">
-          {user.token ? (
+          {user?.token ? (
             <div className="flex   items-center gap-2">
               <Profile />
             </div>
