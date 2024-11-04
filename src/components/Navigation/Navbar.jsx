@@ -53,7 +53,9 @@ const Navbar = () => {
                   sign up for free trial
                 </Button>
               </Link>
-              <Button className="text-white flex md:hidden">sign up</Button>
+              <Link href={"/signup"}>
+                <Button className="text-white flex md:hidden">sign up</Button>
+              </Link>
             </>
           )}
           <ModeToggle />
