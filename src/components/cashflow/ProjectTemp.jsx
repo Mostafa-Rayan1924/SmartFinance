@@ -55,7 +55,7 @@ const ProjectTemp = () => {
     };
     if (
       user?.token &&
-      numOfSheet.sheet < 3 &&
+      numOfSheet.paid &&
       organizationName &&
       organizationAddress
     ) {
@@ -71,6 +71,29 @@ const ProjectTemp = () => {
             }
           );
           console.log(res.data);
+          setNum(Math.random());
+        } catch (error) {
+          console.error("Error creating sheet:", error);
+        }
+      }
+    } else if (
+      user?.token &&
+      numOfSheet.paid == false &&
+      numOfSheet.sheet < 3 &&
+      organizationName &&
+      organizationAddress
+    ) {
+      const confirmPrint = window.confirm("Do you want to print this report?");
+      if (confirmPrint) {
+        window.print();
+        try {
+          const res = await axios.post(
+            "https://smart-finance-five.vercel.app/finance/api/balance/createsheet",
+            {},
+            {
+              headers: headers,
+            }
+          );
           setNum(Math.random());
         } catch (error) {
           console.error("Error creating sheet:", error);
@@ -110,9 +133,9 @@ const ProjectTemp = () => {
         <div className="border-b pb-4 space-y-4">
           <h2 className="font-semibold mb-2">Operating cash flows</h2>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">NetIncome:</span>
+            <span className="text-sm capitalize sm:text-base ">NetIncome:</span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={OperatingCashFlows.NetIncome}
@@ -125,9 +148,11 @@ const ProjectTemp = () => {
             />
           </div>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">Depreciation:</span>
+            <span className="text-sm capitalize sm:text-base ">
+              Depreciation:
+            </span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={OperatingCashFlows.Depreciation}
@@ -140,9 +165,11 @@ const ProjectTemp = () => {
             />
           </div>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">UnpaidTaxes:</span>
+            <span className="text-sm capitalize sm:text-base ">
+              UnpaidTaxes:
+            </span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={OperatingCashFlows.UnpaidTaxes}
@@ -155,9 +182,11 @@ const ProjectTemp = () => {
             />
           </div>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">IncreaseInReceivables:</span>
+            <span className="text-sm capitalize sm:text-base ">
+              IncreaseInReceivables:
+            </span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={OperatingCashFlows.IncreaseInReceivables}
@@ -170,9 +199,11 @@ const ProjectTemp = () => {
             />
           </div>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">IncreaseInInventory:</span>
+            <span className="text-sm capitalize sm:text-base ">
+              IncreaseInInventory:
+            </span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={OperatingCashFlows.IncreaseInInventory}
@@ -185,9 +216,11 @@ const ProjectTemp = () => {
             />
           </div>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">IncreaseInPayables:</span>
+            <span className="text-sm capitalize sm:text-base ">
+              IncreaseInPayables:
+            </span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={OperatingCashFlows.IncreaseInPayables}
@@ -200,7 +233,9 @@ const ProjectTemp = () => {
             />
           </div>
           <div className="flex items-center text-primary font-bold  justify-between">
-            <span className="capitalize">Total of OperatingCashFlows :</span>
+            <span className="text-sm capitalize sm:text-base">
+              Total of OperatingCashFlows :
+            </span>
             <h4>{totalOfOperatingCashFlows}$</h4>
           </div>
         </div>
@@ -208,9 +243,9 @@ const ProjectTemp = () => {
         <div className="py-4 border-b ">
           <h2 className="font-semibold mb-2">Investing cash flows</h2>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">Net capex:</span>
+            <span className="text-sm capitalize sm:text-base ">Net capex:</span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={InvestingCashFlows}
@@ -222,9 +257,11 @@ const ProjectTemp = () => {
         <div className="mt-4 space-y-4">
           <h2 className="font-semibold mb-2">Financing cash flows</h2>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">Repayment of short term loans:</span>
+            <span className="text-sm capitalize sm:text-base ">
+              Repayment of short term loans:
+            </span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={FinancingCashFlows.RepaymentShort}
@@ -237,9 +274,11 @@ const ProjectTemp = () => {
             />
           </div>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">Repayment of long term loans:</span>
+            <span className="text-sm capitalize sm:text-base ">
+              Repayment of long term loans:
+            </span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={FinancingCashFlows.RepaymentLong}
@@ -252,9 +291,11 @@ const ProjectTemp = () => {
             />
           </div>
           <div className="flex items-center gap-3  justify-between">
-            <span className="capitalize ">Dividend payment:</span>
+            <span className="text-sm capitalize sm:text-base ">
+              Dividend payment:
+            </span>
             <input
-              className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+              className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
               type="number"
               min="0"
               value={FinancingCashFlows.Dividend}
@@ -267,12 +308,16 @@ const ProjectTemp = () => {
             />
           </div>
           <div className="flex items-center text-primary font-bold  justify-between">
-            <span className="capitalize">Total of Financing Cash Flows :</span>
+            <span className="text-sm capitalize sm:text-base">
+              Total of Financing Cash Flows :
+            </span>
             <h4>{totalOfFinancingCashFlows}$</h4>
           </div>
         </div>
         <div className="flex items-center mt-4 text-green-500 text-2xl  font-bold  justify-evenly">
-          <span className="capitalize">Change in cash:</span>
+          <span className="text-sm capitalize sm:text-base">
+            Change in cash:
+          </span>
           <h4>
             {+InvestingCashFlows +
               +totalOfFinancingCashFlows -

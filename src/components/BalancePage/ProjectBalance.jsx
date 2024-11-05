@@ -61,6 +61,32 @@ const ProjectBalance = () => {
 
     if (
       user?.token &&
+      numOfSheet.paid &&
+      totalAssets !== 0 &&
+      totalLiabilities !== 0 &&
+      totalAssets === totalLiabilities &&
+      organizationName &&
+      organizationAddress
+    ) {
+      const confirmPrint = window.confirm("Do you want to print this report?");
+      if (confirmPrint) {
+        window.print();
+        try {
+          const res = await axios.post(
+            "https://smart-finance-five.vercel.app/finance/api/balance/createsheet",
+            {},
+            {
+              headers: headers,
+            }
+          );
+          setNum(Math.random());
+        } catch (error) {
+          console.error("Error creating sheet:", error);
+        }
+      }
+    } else if (
+      user?.token &&
+      numOfSheet.paid == false &&
       numOfSheet.sheet < 3 &&
       totalAssets !== 0 &&
       totalLiabilities !== 0 &&
@@ -86,7 +112,7 @@ const ProjectBalance = () => {
       }
     } else if (!user?.token) {
       router.push("/login");
-    } else if (user && user?.user?.paid === false && numOfSheet.sheet === 3) {
+    } else if (user && numOfSheet.paid === false && numOfSheet.sheet === 3) {
       router.push("/payment");
     } else {
       alert(
@@ -125,9 +151,9 @@ const ProjectBalance = () => {
                 <li
                   className="flex items-center my-2 justify-between"
                   key={item.label}>
-                  <span>{item.label}:</span>
+                  <span className="text-sm">{item.label}:</span>
                   <input
-                    className="outline-none bg-accent w-[140px] sm:w-auto border px-2 py-2 rounded-lg"
+                    className="outline-none bg-accent w-[80px] sm:w-auto border px-2 py-2 rounded-lg"
                     type="number"
                     min="0" // تعيين الحد الأدنى للقيمة
                     value={item.value}
@@ -164,9 +190,9 @@ const ProjectBalance = () => {
                 <li
                   className="flex items-center my-2 justify-between"
                   key={item.label}>
-                  <span>{item.label}:</span>
+                  <span className="text-sm">{item.label}:</span>
                   <input
-                    className="outline-none bg-accent w-[140px] sm:w-auto border px-2 py-2 rounded-lg"
+                    className="outline-none bg-accent w-[80px] sm:w-auto border px-2 py-2 rounded-lg"
                     type="number"
                     min="0" // تعيين الحد الأدنى للقيمة
                     value={item.value}

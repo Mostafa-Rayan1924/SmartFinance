@@ -57,7 +57,7 @@ const IncomeTemp = () => {
     };
     if (
       user?.token &&
-      numOfSheet.sheet < 3 &&
+      numOfSheet.paid &&
       organizationName &&
       organizationAddress
     ) {
@@ -73,6 +73,29 @@ const IncomeTemp = () => {
             }
           );
 
+          setNum(Math.random());
+        } catch (error) {
+          console.error("Error creating sheet:", error);
+        }
+      }
+    } else if (
+      user?.token &&
+      numOfSheet.paid == false &&
+      numOfSheet.sheet < 3 &&
+      organizationName &&
+      organizationAddress
+    ) {
+      const confirmPrint = window.confirm("Do you want to print this report?");
+      if (confirmPrint) {
+        window.print();
+        try {
+          const res = await axios.post(
+            "https://smart-finance-five.vercel.app/finance/api/balance/createsheet",
+            {},
+            {
+              headers: headers,
+            }
+          );
           setNum(Math.random());
         } catch (error) {
           console.error("Error creating sheet:", error);
@@ -109,9 +132,9 @@ const IncomeTemp = () => {
       </div>
       <div className="space-y-4">
         <div className="flex items-center gap-3  justify-between">
-          <span className="capitalize ">revenue:</span>
+          <span className="text-sm capitalize sm:text-base ">revenue:</span>
           <input
-            className="outline-none bg-accent  w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+            className="outline-none bg-accent  w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
             type="number"
             min="0"
             value={data.revenue}
@@ -119,9 +142,9 @@ const IncomeTemp = () => {
           />
         </div>
         <div className="flex items-center  justify-between">
-          <span className="capitalize">Purchases:</span>
+          <span className="text-sm capitalize sm:text-base">Purchases:</span>
           <input
-            className="outline-none bg-accent w-[140px] sm:w-auto border px-2 py-2 rounded-lg"
+            className="outline-none bg-accent w-[80px] sm:w-auto border px-2 py-2 rounded-lg"
             type="number"
             min="0"
             value={data.Purchases}
@@ -129,13 +152,13 @@ const IncomeTemp = () => {
           />
         </div>
         <div className="flex items-center text-primary font-bold  justify-between">
-          <span className="capitalize">Gross profit:</span>
+          <span className="text-sm capitalize sm:text-base">Gross profit:</span>
           <h4>{getProfit}$</h4>
         </div>
         <div className="flex items-center  justify-between">
-          <span className="capitalize">Expenses:</span>
+          <span className="text-sm capitalize sm:text-base">Expenses:</span>
           <input
-            className="outline-none bg-accent w-[140px] sm:w-auto border px-2 py-2 rounded-lg"
+            className="outline-none bg-accent w-[80px] sm:w-auto border px-2 py-2 rounded-lg"
             type="number"
             min="0"
             value={data.Expenses}
@@ -143,9 +166,9 @@ const IncomeTemp = () => {
           />
         </div>
         <div className="flex items-center  justify-between">
-          <span className="capitalize">Depreciation:</span>
+          <span className="text-sm capitalize sm:text-base">Depreciation:</span>
           <input
-            className="outline-none bg-accent w-[140px] sm:w-auto border px-2 py-2 rounded-lg"
+            className="outline-none bg-accent w-[80px] sm:w-auto border px-2 py-2 rounded-lg"
             type="number"
             min="0"
             value={data.Depreciation}
@@ -153,13 +176,17 @@ const IncomeTemp = () => {
           />
         </div>
         <div className="flex items-center text-primary font-bold  justify-between">
-          <span className="capitalize">Operating profit (EBIT):</span>
+          <span className="text-sm capitalize sm:text-base">
+            Operating profit (EBIT):
+          </span>
           <h4>{getEBIT}$</h4>
         </div>
-        <div className="flex items-center  justify-between">
-          <span className="capitalize">InterestExpense:</span>
+        <div className="flex items-center justify-between">
+          <span className=" text-sm capitalize sm:text-base">
+            InterestExpense:
+          </span>
           <input
-            className="outline-none bg-accent w-[140px] sm:w-auto border px-2 py-2 rounded-lg"
+            className="outline-none bg-accent w-[80px] sm:w-auto border px-2 py-2 rounded-lg"
             type="number"
             min="0"
             value={data.InterestExpense}
@@ -169,13 +196,15 @@ const IncomeTemp = () => {
           />
         </div>
         <div className="flex items-center text-primary font-bold  justify-between">
-          <span className="capitalize">Earnings before tax:</span>
+          <span className="text-sm capitalize sm:text-base">
+            Earnings before tax:
+          </span>
           <h4>{getEarningbefTax}$</h4>
         </div>
         <div className="flex items-center  justify-between">
-          <span className="capitalize">Tax:</span>
+          <span className="text-sm capitalize sm:text-base">Tax:</span>
           <input
-            className="outline-none bg-accent w-[140px] sm:w-auto  border px-2 py-2 rounded-lg"
+            className="outline-none bg-accent w-[80px] sm:w-auto  border px-2 py-2 rounded-lg"
             type="number"
             min="0"
             value={data.Tax}
@@ -183,13 +212,13 @@ const IncomeTemp = () => {
           />
         </div>
         <div className="flex items-center text-primary font-bold  justify-between">
-          <span className="capitalize">net income:</span>
+          <span className="text-sm capitalize sm:text-base">net income:</span>
           <h4>{getNetIncome}$</h4>
         </div>
         <div className="flex items-center  justify-between">
-          <span className="capitalize">Dividend:</span>
+          <span className="text-sm capitalize sm:text-base">Dividend:</span>
           <input
-            className="outline-none bg-accent w-[140px] sm:w-auto border px-2 py-2 rounded-lg"
+            className="outline-none bg-accent w-[80px] sm:w-auto border px-2 py-2 rounded-lg"
             type="number"
             min="0"
             value={data.Dividend}
@@ -197,7 +226,9 @@ const IncomeTemp = () => {
           />
         </div>
         <div className="flex items-center text-green-500 text-2xl font-bold  justify-evenly">
-          <span className="capitalize">Retained earnings:</span>
+          <span className="text-sm capitalize sm:text-base">
+            Retained earnings:
+          </span>
           <h4>{getNetIncome - data.Dividend}$</h4>
         </div>
         {/* زر الطباعة */}
