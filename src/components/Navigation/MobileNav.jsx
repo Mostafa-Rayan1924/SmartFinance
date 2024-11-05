@@ -1,6 +1,9 @@
+"use client";
 import { navLinks } from "@/constants/navlinks";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 const MobileNav = () => {
+  const pathname = usePathname();
   return (
     <header className="flex md:hidden fixed bottom-0 left-0 z-50 border-t border-border py-4 w-full bg-background">
       <div className="container ">
@@ -9,10 +12,12 @@ const MobileNav = () => {
             <Link
               href={`${link.url}`}
               key={link.id}
-              className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 ">
+              className={`text-sm text-muted-foreground  ${
+                pathname == link.url ? "text-primary" : "text-muted-foreground"
+              } hover:text-primary transition-all duration-300 `}>
               <div className="flex  items-center flex-col gap-y-[2px]">
                 <span>{link.icon}</span>
-                <span className="capitalize text-[10px] whitespace-nowrap">
+                <span className="capitalize text-[10px] text-center leading-tight ">
                   {link.title}
                 </span>
               </div>

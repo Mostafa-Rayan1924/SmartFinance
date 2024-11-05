@@ -20,4 +20,10 @@ export let navLinks = [
     url: "/cashFlow",
     icon: <CircleDollarSign className="size-4" />,
   },
+  {
+    id: 4,
+    title: "Shareholders' equity",
+    url: "/shareholders",
+    icon: <Scale className="size-4" />,
+  },
 ];

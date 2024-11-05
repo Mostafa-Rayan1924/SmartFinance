@@ -27,7 +27,7 @@ const Navbar = () => {
           />
         </Link>
         {/* links on large screen */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center md:gap-4 lg:gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.id}
@@ -35,7 +35,7 @@ const Navbar = () => {
                 pathname == link.url
                   ? "text-foreground"
                   : "text-muted-foreground"
-              } capitalize hover:text-foreground transition-all duration-300`}
+              } capitalize hover:text-foreground text-[13px] transition-all duration-300`}
               href={`${link.url}`}>
               {link.title}
             </Link>

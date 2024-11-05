@@ -51,3 +51,47 @@ export let incomeStatementFeatures = [
       "Represents the total tax expense deducted from Gross Profit to determine Net Income.",
   },
 ];
+export let shareholdersEquityFeatures = [
+  {
+    id: 1,
+    icon: <PieChart size={40} />,
+    title: "Common Stock",
+    description:
+      "Represents the equity raised through the issuance of shares to investors.",
+  },
+  {
+    id: 2,
+    icon: <DollarSign size={40} />,
+    title: "Preferred Stock",
+    description:
+      "A type of equity that provides dividends and has priority over common stock in asset distribution.",
+  },
+  {
+    id: 3,
+    icon: <TrendingUp size={40} />,
+    title: "Retained Earnings",
+    description:
+      "Accumulated profits that are reinvested in the business rather than distributed as dividends.",
+  },
+  {
+    id: 4,
+    icon: <TrendingDown size={40} />,
+    title: "Treasury Stock",
+    description:
+      "Shares that were issued and later reacquired by the company, reducing total shareholders' equity.",
+  },
+  {
+    id: 5,
+    icon: <FileText size={40} />,
+    title: "Additional Paid-In Capital",
+    description:
+      "Capital received from shareholders above the par value of stock, contributing to total equity.",
+  },
+  {
+    id: 6,
+    icon: <Percent size={40} />,
+    title: "Accumulated Other Comprehensive Income",
+    description:
+      "Reflects gains or losses not yet realized, such as foreign currency adjustments or unrealized gains on investments.",
+  },
+];
