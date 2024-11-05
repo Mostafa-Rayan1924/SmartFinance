@@ -15,7 +15,7 @@ const SwitchSection = ({ imgUrl }) => {
       <div className="absolute left-0 w-[150px] h-[150px]     opacity-50 blur-3xl  rounded-full bg-gradient-to-r from-primary to-transparent -z-20 -bottom-[120px] " />
       <div className="text-center ">
         <MainTitle title={"Switch to smart accounting!"} />
-        {!user && (
+        {!user.token && (
           <Link href={"/login"}>
             <Button className="text-white ">Start with a free trial</Button>
           </Link>
