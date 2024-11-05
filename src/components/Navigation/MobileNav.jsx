@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 const MobileNav = () => {
   const pathname = usePathname();
   return (
-    <header className="flex md:hidden fixed bottom-0 left-0 z-50 border-t border-border py-4 w-full bg-background">
+    <header className="flex md:hidden noprint fixed bottom-0 left-0 z-50 border-t border-border py-4 w-full bg-background">
       <div className="container ">
         <nav className="flex items-center gap-4 justify-evenly ">
           {navLinks.map((link) => (
